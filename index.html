@@ -161,20 +161,12 @@
             <!-- Chatbase Chatbot Integration -->
             <div id="chatbot-container" class="chatbot-container" style="text-align: center; padding: 60px 20px; background: #f5f5f5; border-radius: 10px;">
                 <p style="font-size: 16px; color: #666;">
-                    🤖 Chatbase Chatbot Integrated.<br>
-                    <small style="color: #999;">Please add your Chatbase Chatbot ID to the script in the source code. Once added, the chatbot will appear in the bottom right corner.</small>
+                    🤖 Chatbase Chatbot Integrated Successfully!<br>
+                    <small style="color: #999;">Check the bottom right corner of the page to interact with the chatbot.</small>
                 </p>
                 
                 <script>
-                  window.chatbaseConfig = {
-                    chatbotId: "YOUR_CHATBOT_ID_HERE",
-                  }
-                </script>
-                <script
-                  src="https://www.chatbase.co/embed.min.js"
-                  chatbotId="YOUR_CHATBOT_ID_HERE"
-                  domain="www.chatbase.co"
-                  defer>
+                (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="tJtWI-xpCBYBYMZO9DoUo";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
                 </script>
             </div>
         </div>
