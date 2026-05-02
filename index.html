@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered customer support solution with integrated chatbot">
+    <title>AI Customer Support - 24/7 Intelligent Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>AI Support Hub</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to AI Support Hub</h1>
+            <p>Intelligent customer support available 24/7 through our AI-powered chatbot</p>
+            <button class="cta-button" onclick="scrollToChat()">Start Chat Now</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Choose Our Solution?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered</h3>
+                    <p>Advanced artificial intelligence provides intelligent, contextual responses to your questions.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>24/7 Available</h3>
+                    <p>Get support anytime, day or night. No waiting for business hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Response</h3>
+                    <p>Receive immediate answers to common questions without delays.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access support seamlessly on any device - phone, tablet, or desktop.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Accurate</h3>
+                    <p>Trained on comprehensive knowledge base for accurate, reliable answers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Human Escalation</h3>
+                    <p>Complex issues can be escalated to human support agents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Customer Support</h3>
+                    <p>Get instant answers to frequently asked questions about our products and services.</p>
+                    <ul>
+                        <li>Product inquiries</li>
+                        <li>Troubleshooting help</li>
+                        <li>Account assistance</li>
+                        <li>Billing questions</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Technical Help</h3>
+                    <p>Receive technical assistance and guidance for common issues.</p>
+                    <ul>
+                        <li>Setup guides</li>
+                        <li>Integration help</li>
+                        <li>Error resolution</li>
+                        <li>Performance tips</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Information Hub</h3>
+                    <p>Access detailed information about our offerings and features.</p>
+                    <ul>
+                        <li>Product features</li>
+                        <li>Pricing details</li>
+                        <li>Service terms</li>
+                        <li>Documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Our AI Solution</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Revolutionizing Customer Support</h3>
+                    <p>Our AI-powered customer support solution combines cutting-edge artificial intelligence with
+                        intelligent chatbot technology to provide customers with instant, accurate, and helpful support
+                        whenever they need it.</p>
+                    <p>Built with Antigravity and deployed on Vercel, our platform demonstrates the power of modern web
+                        technologies integrated with AI capabilities.</p>
+                    <h4>Our Mission</h4>
+                    <p>To provide accessible, efficient, and intelligent customer support through AI-powered chatbot
+                        technology, reducing response times and improving customer satisfaction.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h4>24/7</h4>
+                        <p>Support Hours</p>
+                    </div>
+                    <div class="stat">
+                        <h4>&lt;1s</h4>
+                        <p>Response Time</p>
+                    </div>
+                    <div class="stat">
+                        <h4>100+</h4>
+                        <p>FAQ Topics</p>
+                    </div>
+                    <div class="stat">
+                        <h4>99%</h4>
+                        <p>Uptime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section class="chatbot-section" id="chatbot">
+        <div class="container">
+            <h2>Chat with Our AI Assistant</h2>
+            <p>Use the interface below to start a conversation with our intelligent support bot</p>
+
+            <!-- Chatbase Chatbot Integration -->
+            <div id="chatbot-container" class="chatbot-container" style="text-align: center; padding: 60px 20px; background: #f5f5f5; border-radius: 10px;">
+                <p style="font-size: 16px; color: #666;">
+                    🤖 Chatbase Chatbot Integrated.<br>
+                    <small style="color: #999;">Please add your Chatbase Chatbot ID to the script in the source code. Once added, the chatbot will appear in the bottom right corner.</small>
+                </p>
+                
+                <script>
+                  window.chatbaseConfig = {
+                    chatbotId: "YOUR_CHATBOT_ID_HERE",
+                  }
+                </script>
+                <script
+                  src="https://www.chatbase.co/embed.min.js"
+                  chatbotId="YOUR_CHATBOT_ID_HERE"
+                  domain="www.chatbase.co"
+                  defer>
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="info-item">
+                        <h4>📧 Email</h4>
+                        <p>support@aisupporthub.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>📞 Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🏢 Address</h4>
+                        <p>123 Tech Street<br>San Francisco, CA 94105<br>United States</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>⏰ Business Hours</h4>
+                        <p>Monday - Friday: 9AM - 5PM EST<br>Saturday - Sunday: Closed<br>Chat available 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI Support Hub. All rights reserved.</p>
+            <p>Built with Antigravity | Powered by AI | Deployed on Vercel</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
