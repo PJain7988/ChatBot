@@ -1,318 +1,298 @@
-// ======================================
-// AI Support Hub - JavaScript
-// ======================================
+/**
+ * NexusAI — Main JavaScript
+ * Version: 2.0.0
+ * Author: NexusAI Team
+ */
 
-// Smooth scroll to chatbot
-function scrollToChat() {
-    const chatSection = document.getElementById('chatbot');
-    if (chatSection) {
-        chatSection.scrollIntoView({ behavior: 'smooth' });
-    }
+'use strict';
+
+/* ============================================================
+   1. DOM Ready
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    initNavbar();
+    initMobileMenu();
+    initSmoothScroll();
+    initScrollAnimations();
+    initActiveNavHighlight();
+    initFooterYear();
+    initAccessibility();
+});
+
+/* ============================================================
+   2. Navbar — Scroll Effect
+   ============================================================ */
+
+function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    const onScroll = () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load
 }
 
-// Handle contact form submission
+/* ============================================================
+   3. Mobile Menu Toggle
+   ============================================================ */
+
+function initMobileMenu() {
+    const toggle  = document.getElementById('navToggle');
+    const menu    = document.getElementById('navMenu');
+    if (!toggle || !menu) return;
+
+    const close = () => {
+        menu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close on nav link click
+    menu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', close);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+            close();
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+    });
+}
+
+/* ============================================================
+   4. Smooth Scroll
+   ============================================================ */
+
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (!target) return;
+
+            e.preventDefault();
+
+            const navHeight  = parseInt(getComputedStyle(document.documentElement)
+                .getPropertyValue('--nav-height')) || 72;
+            const targetTop  = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        });
+    });
+}
+
+/* ============================================================
+   5. Scroll Animations (Intersection Observer)
+   ============================================================ */
+
+function initScrollAnimations() {
+    const targets = document.querySelectorAll(
+        '.feature-card, .service-card, .stat, .info-item, .about-text, .contact-form-wrap, .contact-info'
+    );
+
+    if (!targets.length) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    // Stagger delay for sibling cards
+                    const siblings = [...entry.target.parentElement.children];
+                    const index    = siblings.indexOf(entry.target);
+                    const delay    = Math.min(index * 80, 400);
+
+                    entry.target.style.transitionDelay = `${delay}ms`;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    targets.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+    });
+}
+
+/* ============================================================
+   6. Active Nav Highlight on Scroll
+   ============================================================ */
+
+function initActiveNavHighlight() {
+    const sections  = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.nav-link');
+    const navHeight = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--nav-height')) || 72;
+
+    const highlight = () => {
+        let current = '';
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - navHeight - 80) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.toggle(
+                'active',
+                link.getAttribute('href') === `#${current}`
+            );
+        });
+    };
+
+    window.addEventListener('scroll', highlight, { passive: true });
+    highlight();
+}
+
+/* ============================================================
+   7. Contact Form
+   ============================================================ */
+
+/**
+ * Handles contact form submission.
+ * In production, replace the simulated delay with a real API call.
+ * @param {Event} event
+ */
 function handleSubmit(event) {
     event.preventDefault();
 
-    // Get form values
-    const form = document.getElementById('contactForm');
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
+    const form    = event.target;
+    const btn     = form.querySelector('[type="submit"]');
+    const name    = form.querySelector('#name')?.value.trim()    || '';
+    const email   = form.querySelector('#email')?.value.trim()   || '';
+    const subject = form.querySelector('#subject')?.value.trim() || '';
+    const message = form.querySelector('#message')?.value.trim() || '';
 
-    // Validation
+    // Client-side validation
     if (!name || !email || !subject || !message) {
-        showMessage('Please fill in all fields', 'error');
+        showFormMessage('Please complete all fields before sending.', 'error');
         return;
     }
 
-    // Email validation
     if (!isValidEmail(email)) {
-        showMessage('Please enter a valid email address', 'error');
+        showFormMessage('Please enter a valid email address.', 'error');
         return;
     }
 
-    // Simulate form submission
-    // In a real application, this would send data to a server
-    console.log('Form submitted:', {
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
-        timestamp: new Date().toISOString()
-    });
+    // Disable button during submission
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = `<span>Sending…</span>`;
+    btn.disabled  = true;
 
-    // Show success message
-    showMessage('Thank you! We have received your message. We will respond shortly.', 'success');
-
-    // Reset form
-    form.reset();
-
-    // Hide message after 5 seconds
+    // Simulate async submission (replace with fetch() in production)
     setTimeout(() => {
-        document.getElementById('formMessage').style.display = 'none';
-    }, 5000);
+        console.info('[NexusAI] Contact form submission:', {
+            name, email, subject, message,
+            timestamp: new Date().toISOString(),
+        });
+
+        showFormMessage(
+            `✓ Thanks, ${name}! We've received your message and will be in touch within 24 hours.`,
+            'success'
+        );
+
+        form.reset();
+        btn.innerHTML = originalHTML;
+        btn.disabled  = false;
+
+        // Auto-dismiss success after 8 seconds
+        setTimeout(() => {
+            const msgEl = document.getElementById('formMessage');
+            if (msgEl) msgEl.style.display = 'none';
+        }, 8000);
+    }, 1200);
 }
 
-// Validate email format
+/**
+ * Validates an email address format.
+ * @param {string} email
+ * @returns {boolean}
+ */
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Show form message
-function showMessage(text, type) {
-    const messageDiv = document.getElementById('formMessage');
-    messageDiv.textContent = text;
-    messageDiv.className = `form-message ${type}`;
-    messageDiv.style.display = 'block';
+/**
+ * Displays a status message below the contact form.
+ * @param {string} text
+ * @param {'success'|'error'} type
+ */
+function showFormMessage(text, type) {
+    const el = document.getElementById('formMessage');
+    if (!el) return;
+    el.textContent  = text;
+    el.className    = `form-message ${type}`;
+    el.style.display = 'block';
 }
 
-// Smooth scrolling for navigation links
-document.addEventListener('DOMContentLoaded', function() {
-    // Set up smooth scrolling for all nav links
-    const navLinks = document.querySelectorAll('.nav-link');
+/* ============================================================
+   8. Dynamic Footer Year
+   ============================================================ */
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
+function initFooterYear() {
+    const el = document.getElementById('currentYear');
+    if (el) el.textContent = new Date().getFullYear();
+}
 
-            // Check if it's an internal link (starts with #)
-            if (href.startsWith('#')) {
-                e.preventDefault();
+/* ============================================================
+   9. Accessibility Enhancements
+   ============================================================ */
 
-                const targetId = href.substring(1);
-                const targetSection = document.getElementById(targetId);
-
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+function initAccessibility() {
+    // Announce page section changes to screen readers on nav click
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const targetId  = link.getAttribute('href')?.replace('#', '');
+            const targetEl  = targetId ? document.getElementById(targetId) : null;
+            if (targetEl && !targetEl.hasAttribute('tabindex')) {
+                targetEl.setAttribute('tabindex', '-1');
+                targetEl.focus({ preventScroll: true });
             }
         });
     });
+}
 
-    // Add animation to elements on scroll
-    observeElements();
+/* ============================================================
+   10. Performance Monitoring (Dev Only)
+   ============================================================ */
 
-    // Initialize chatbot
-    initializeChatbot();
+window.addEventListener('load', () => {
+    if (!window.performance || !window.performance.timing) return;
+    const t = window.performance.timing;
+    console.info(`[NexusAI] Page ready: ${t.loadEventEnd - t.navigationStart}ms`);
 });
 
-// Intersection Observer for scroll animations
-function observeElements() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
+/* ============================================================
+   11. Global Error Handling
+   ============================================================ */
 
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe cards
-    const cards = document.querySelectorAll('.feature-card, .service-card, .stat');
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(card);
-    });
-}
-
-// Initialize chatbot functionality
-function initializeChatbot() {
-    // This function can be expanded to handle chatbot initialization
-    // For now, it serves as a placeholder
-
-    console.log('Chatbot initialized');
-
-    // Example: Log when user opens chatbot
-    // This would integrate with your actual chatbot platform
-}
-
-// Add scroll event listener for navbar styling
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.15)';
-    } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    }
+window.addEventListener('error', ({ error, message, filename, lineno }) => {
+    console.error('[NexusAI] Runtime error:', { message, filename, lineno, error });
 });
 
-// Add active state to navigation links based on scroll position
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (scrollY >= sectionTop - sectionHeight / 3) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href').substring(1);
-
-        if (href === current) {
-            link.style.color = 'var(--primary-color)';
-            link.style.borderBottomColor = 'var(--primary-color)';
-        } else {
-            link.style.color = 'var(--text-color)';
-            link.style.borderBottomColor = 'transparent';
-        }
-    });
-}
-
-// Call active nav update on scroll
-window.addEventListener('scroll', updateActiveNavLink);
-
-// Mobile menu functionality (if needed)
-function toggleMobileMenu() {
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (navMenu) {
-        navMenu.classList.toggle('active');
-    }
-}
-
-// Analytics tracking (optional)
-function trackEvent(eventName, eventData) {
-    console.log(`Event: ${eventName}`, eventData);
-
-    // This is where you would integrate with Google Analytics or similar
-    // Example:
-    // if (window.gtag) {
-    //     gtag('event', eventName, eventData);
-    // }
-}
-
-// Track chatbot interactions
-function trackChatbotInteraction(message) {
-    trackEvent('chatbot_message', {
-        message: message,
-        timestamp: new Date().toISOString()
-    });
-}
-
-// Track form submissions
-function trackFormSubmission() {
-    trackEvent('contact_form_submitted', {
-        timestamp: new Date().toISOString()
-    });
-}
-
-// Accessibility features
-function improveAccessibility() {
-    // Set up keyboard navigation
-    const links = document.querySelectorAll('a');
-    const buttons = document.querySelectorAll('button');
-
-    const focusableElements = [...links, ...buttons];
-
-    focusableElements.forEach(element => {
-        element.addEventListener('focus', function() {
-            this.style.outline = '3px solid var(--primary-color)';
-            this.style.outlineOffset = '2px';
-        });
-
-        element.addEventListener('blur', function() {
-            this.style.outline = 'none';
-        });
-    });
-}
-
-// Initialize accessibility features
-document.addEventListener('DOMContentLoaded', improveAccessibility);
-
-// Performance monitoring
-function logPerformanceMetrics() {
-    if (window.performance) {
-        window.addEventListener('load', function() {
-            const perfData = window.performance.timing;
-            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-
-            console.log('Page Load Time:', pageLoadTime + 'ms');
-
-            // Log other useful metrics
-            console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.navigationStart + 'ms');
-            console.log('Resources Loaded:', perfData.loadEventEnd - perfData.resourcesStart + 'ms');
-        });
-    }
-}
-
-// Initialize performance logging
-logPerformanceMetrics();
-
-// Error handling
-window.addEventListener('error', function(event) {
-    console.error('JavaScript Error:', event.error);
-    // In production, you might want to send this to an error tracking service
+window.addEventListener('unhandledrejection', ({ reason }) => {
+    console.error('[NexusAI] Unhandled rejection:', reason);
 });
 
-// Unhandled promise rejection handling
-window.addEventListener('unhandledrejection', function(event) {
-    console.error('Unhandled Promise Rejection:', event.reason);
-    // Handle or log the error
-});
+/* ============================================================
+   Init Log
+   ============================================================ */
 
-// Service Worker registration (optional - for PWA features)
-function registerServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(function(error) {
-            console.log('Service Worker registration failed:', error);
-        });
-    }
-}
-
-// You can call this function to enable PWA features
-// registerServiceWorker();
-
-// Print stylesheet functionality
-function printPage() {
-    window.print();
-}
-
-// Export analytics
-function exportAnalytics() {
-    const analytics = {
-        pageTitle: document.title,
-        url: window.location.href,
-        userAgent: navigator.userAgent,
-        timestamp: new Date().toISOString(),
-        viewport: {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
-    };
-
-    console.log('Analytics Data:', analytics);
-    return analytics;
-}
-
-// ======================================
-// Initialization
-// ======================================
-
-console.log('AI Support Hub - JavaScript loaded successfully');
-console.log('Version: 1.0.0');
-console.log('Build Date: 2024');
-
-
+console.info('%c NexusAI v2.0.0 ', 'background:#2563eb;color:#fff;font-weight:700;border-radius:4px;padding:2px 8px;');

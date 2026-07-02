@@ -4,219 +4,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI-powered customer support solution with integrated chatbot">
-    <title>AI Customer Support - 24/7 Intelligent Assistant</title>
+    <meta name="description" content="NexusAI — Intelligent customer support platform powered by advanced AI. Get instant, accurate answers 24/7 with our conversational AI chatbot.">
+    <meta name="keywords" content="AI chatbot, customer support, intelligent assistant, NexusAI, 24/7 support">
+    <meta name="author" content="NexusAI">
+    <meta property="og:title" content="NexusAI — Intelligent Customer Support Platform">
+    <meta property="og:description" content="Revolutionize your customer experience with AI-powered 24/7 intelligent support.">
+    <meta property="og:type" content="website">
+    <title>NexusAI — Intelligent Customer Support Platform</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+
+    <!-- ===== Navigation ===== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <div class="nav-logo">
-                <h1>AI Support Hub</h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+            <a href="#home" class="nav-logo" aria-label="NexusAI home">
+                <span class="logo-icon" aria-hidden="true">⬡</span>
+                <span class="logo-text">NexusAI</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu" role="list">
+                <li role="listitem"><a href="#home"     class="nav-link" aria-current="page">Home</a></li>
+                <li role="listitem"><a href="#features" class="nav-link">Features</a></li>
+                <li role="listitem"><a href="#services" class="nav-link">Services</a></li>
+                <li role="listitem"><a href="#about"    class="nav-link">About</a></li>
+                <li role="listitem"><a href="#contact"  class="nav-link">Contact</a></li>
             </ul>
+            <a href="#contact" class="nav-cta" id="navCta">Get Started</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- ===== Hero Section ===== -->
+    <section class="hero" id="home" aria-labelledby="heroHeading">
+        <div class="hero-bg-shapes" aria-hidden="true">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
         <div class="hero-content">
-            <h1>Welcome to AI Support Hub</h1>
-            <p>Intelligent customer support available 24/7 through our AI-powered chatbot</p>
-            <button class="cta-button" onclick="window.chatbase('open')">Start Chat Now</button>
+            <div class="hero-badge">
+                <span class="badge-dot" aria-hidden="true"></span>
+                AI-Powered · Available 24/7
+            </div>
+            <h1 id="heroHeading">
+                Customer Support,<br>
+                <span class="gradient-text">Reimagined with AI</span>
+            </h1>
+            <p class="hero-subtitle">
+                Deploy intelligent conversations that delight customers, reduce support tickets
+                by up to 70%, and free your team to focus on what matters most.
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" id="heroCtaBtn" onclick="window.chatbase?.('open')">
+                    <span>Start Free Chat</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <a href="#features" class="btn btn-ghost" id="heroLearnBtn">
+                    See How It Works
+                </a>
+            </div>
+            <div class="hero-stats" role="list">
+                <div class="hero-stat" role="listitem">
+                    <strong>24/7</strong>
+                    <span>Always Online</span>
+                </div>
+                <div class="hero-divider" aria-hidden="true"></div>
+                <div class="hero-stat" role="listitem">
+                    <strong>&lt;1s</strong>
+                    <span>Response Time</span>
+                </div>
+                <div class="hero-divider" aria-hidden="true"></div>
+                <div class="hero-stat" role="listitem">
+                    <strong>99.9%</strong>
+                    <span>Uptime SLA</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- ===== Trusted By Banner ===== -->
+    <section class="trust-banner" aria-label="Trusted by leading brands">
         <div class="container">
-            <h2>Why Choose Our Solution?</h2>
+            <p class="trust-label">Trusted by forward-thinking teams</p>
+            <div class="trust-logos" aria-hidden="true">
+                <span>Acme Corp</span>
+                <span>Zenith Tech</span>
+                <span>NovaSoft</span>
+                <span>Pulse AI</span>
+                <span>Vertex Labs</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Features Section ===== -->
+    <section class="features" id="features" aria-labelledby="featuresHeading">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why NexusAI</span>
+                <h2 id="featuresHeading">Built for modern customer experience</h2>
+                <p>Every feature is purpose-built to reduce friction, increase satisfaction, and scale effortlessly with your business.</p>
+            </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Powered</h3>
-                    <p>Advanced artificial intelligence provides intelligent, contextual responses to your questions.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⏰</div>
-                    <h3>24/7 Available</h3>
-                    <p>Get support anytime, day or night. No waiting for business hours.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Instant Response</h3>
-                    <p>Receive immediate answers to common questions without delays.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Friendly</h3>
-                    <p>Access support seamlessly on any device - phone, tablet, or desktop.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Accurate</h3>
-                    <p>Trained on comprehensive knowledge base for accurate, reliable answers.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Human Escalation</h3>
-                    <p>Complex issues can be escalated to human support agents.</p>
-                </div>
+                <article class="feature-card" id="featureAI">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="3"/></svg>
+                    </div>
+                    <h3>AI-Powered Intelligence</h3>
+                    <p>Natural language understanding that grasps context, intent, and nuance — just like a human expert would.</p>
+                </article>
+                <article class="feature-card" id="featureAvailability">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>24/7 Availability</h3>
+                    <p>Never lose a customer to downtime. Our platform operates around the clock, every day of the year.</p>
+                </article>
+                <article class="feature-card" id="featureInstant">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Instant Responses</h3>
+                    <p>Sub-second response latency eliminates wait times and dramatically improves customer satisfaction scores.</p>
+                </article>
+                <article class="feature-card" id="featureMobile">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3>Omnichannel Ready</h3>
+                    <p>Pixel-perfect experience across desktop, tablet, and mobile — wherever your customers are.</p>
+                </article>
+                <article class="feature-card" id="featureAccurate">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3>Precision Accuracy</h3>
+                    <p>Trained on your proprietary knowledge base to deliver accurate, brand-consistent answers every time.</p>
+                </article>
+                <article class="feature-card" id="featureEscalation">
+                    <div class="feature-icon-wrap" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Smart Escalation</h3>
+                    <p>Seamlessly hands off complex cases to human agents, with full conversation context preserved.</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- ===== Services Section ===== -->
+    <section class="services" id="services" aria-labelledby="servicesHeading">
         <div class="container">
-            <h2>Our Services</h2>
+            <div class="section-header">
+                <span class="section-tag">What We Offer</span>
+                <h2 id="servicesHeading">End-to-end support solutions</h2>
+                <p>Comprehensive services designed to cover every customer touchpoint from first contact to resolution.</p>
+            </div>
             <div class="services-grid">
-                <div class="service-card">
+                <article class="service-card" id="serviceCustomer">
+                    <div class="service-number" aria-hidden="true">01</div>
                     <h3>Customer Support</h3>
-                    <p>Get instant answers to frequently asked questions about our products and services.</p>
-                    <ul>
-                        <li>Product inquiries</li>
-                        <li>Troubleshooting help</li>
-                        <li>Account assistance</li>
-                        <li>Billing questions</li>
+                    <p>Intelligent, instant answers to your most common customer questions — available before you even publish them.</p>
+                    <ul aria-label="Customer support features">
+                        <li>Product & service inquiries</li>
+                        <li>Account management assistance</li>
+                        <li>Billing & payment queries</li>
+                        <li>Order status & tracking</li>
                     </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Technical Help</h3>
-                    <p>Receive technical assistance and guidance for common issues.</p>
-                    <ul>
-                        <li>Setup guides</li>
-                        <li>Integration help</li>
-                        <li>Error resolution</li>
-                        <li>Performance tips</li>
+                    <div class="service-footer">
+                        <a href="#contact" class="service-link" id="serviceCustomerLink">Learn more →</a>
+                    </div>
+                </article>
+                <article class="service-card" id="serviceTechnical">
+                    <div class="service-number" aria-hidden="true">02</div>
+                    <h3>Technical Assistance</h3>
+                    <p>Guided troubleshooting and resolution paths that empower customers to self-serve with confidence.</p>
+                    <ul aria-label="Technical assistance features">
+                        <li>Step-by-step setup guides</li>
+                        <li>Integration & API support</li>
+                        <li>Automated error diagnosis</li>
+                        <li>Performance optimization tips</li>
                     </ul>
-                </div>
-                <div class="service-card">
-                    <h3>Information Hub</h3>
-                    <p>Access detailed information about our offerings and features.</p>
-                    <ul>
-                        <li>Product features</li>
-                        <li>Pricing details</li>
-                        <li>Service terms</li>
-                        <li>Documentation</li>
+                    <div class="service-footer">
+                        <a href="#contact" class="service-link" id="serviceTechnicalLink">Learn more →</a>
+                    </div>
+                </article>
+                <article class="service-card" id="serviceKnowledge">
+                    <div class="service-number" aria-hidden="true">03</div>
+                    <h3>Knowledge Hub</h3>
+                    <p>Centralized, AI-curated product and policy information always surfaced at the right moment.</p>
+                    <ul aria-label="Knowledge hub features">
+                        <li>Dynamic product catalog</li>
+                        <li>Pricing & plan comparisons</li>
+                        <li>Policy & compliance docs</li>
+                        <li>Developer documentation</li>
                     </ul>
-                </div>
+                    <div class="service-footer">
+                        <a href="#contact" class="service-link" id="serviceKnowledgeLink">Learn more →</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- ===== About Section ===== -->
+    <section class="about" id="about" aria-labelledby="aboutHeading">
         <div class="container">
-            <h2>About Our AI Solution</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Revolutionizing Customer Support</h3>
-                    <p>Our AI-powered customer support solution combines cutting-edge artificial intelligence with
-                        intelligent chatbot technology to provide customers with instant, accurate, and helpful support
-                        whenever they need it.</p>
-                    <p>Built with Antigravity and deployed on Vercel, our platform demonstrates the power of modern web
-                        technologies integrated with AI capabilities.</p>
-                    <h4>Our Mission</h4>
-                    <p>To provide accessible, efficient, and intelligent customer support through AI-powered chatbot
-                        technology, reducing response times and improving customer satisfaction.</p>
+                    <span class="section-tag light">Our Mission</span>
+                    <h2 id="aboutHeading">Transforming the way businesses connect with customers</h2>
+                    <p>NexusAI was founded on a simple belief: every customer deserves fast, accurate, and empathetic support — regardless of time zone, volume, or complexity.</p>
+                    <p>Our platform combines cutting-edge conversational AI with deep business logic to create support experiences that feel genuinely human, yet scale infinitely.</p>
+                    <div class="about-highlights">
+                        <div class="highlight-item" id="highlightTickets">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Reduce support tickets by up to 70%</span>
+                        </div>
+                        <div class="highlight-item" id="highlightSatisfaction">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Improve CSAT scores significantly</span>
+                        </div>
+                        <div class="highlight-item" id="highlightDeploy">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Deploy and go live in under 30 minutes</span>
+                        </div>
+                        <div class="highlight-item" id="highlightIntegrate">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Integrate with your existing tech stack</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h4>24/7</h4>
-                        <p>Support Hours</p>
+                <div class="about-stats" role="list" aria-label="Key statistics">
+                    <div class="stat" role="listitem" id="statUptime">
+                        <div class="stat-icon" aria-hidden="true">⚡</div>
+                        <strong>99.9%</strong>
+                        <span>Uptime SLA</span>
                     </div>
-                    <div class="stat">
-                        <h4>&lt;1s</h4>
-                        <p>Response Time</p>
+                    <div class="stat" role="listitem" id="statResponse">
+                        <div class="stat-icon" aria-hidden="true">⏱</div>
+                        <strong>&lt;1s</strong>
+                        <span>Avg. Response Time</span>
                     </div>
-                    <div class="stat">
-                        <h4>100+</h4>
-                        <p>FAQ Topics</p>
+                    <div class="stat" role="listitem" id="statTopics">
+                        <div class="stat-icon" aria-hidden="true">📚</div>
+                        <strong>500+</strong>
+                        <span>Knowledge Topics</span>
                     </div>
-                    <div class="stat">
-                        <h4>99%</h4>
-                        <p>Uptime</p>
+                    <div class="stat" role="listitem" id="statAvailability">
+                        <div class="stat-icon" aria-hidden="true">🌐</div>
+                        <strong>24/7</strong>
+                        <span>Global Support</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chatbase Chatbot Integration Script (Hidden from page body, powers the floating widget) -->
+    <!-- ===== Chatbase Chatbot Integration ===== -->
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="tJtWI-xpCBYBYMZO9DoUo";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- ===== Contact Section ===== -->
+    <section class="contact" id="contact" aria-labelledby="contactHeading">
         <div class="container">
-            <h2>Get in Touch</h2>
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 id="contactHeading">Ready to transform your support?</h2>
+                <p>Reach out and let's build a smarter customer experience together.</p>
+            </div>
             <div class="contact-content">
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form id="contactForm" onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                <div class="contact-form-wrap">
+                    <form id="contactForm" class="contact-form" onsubmit="handleSubmit(event)" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Smith" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Work Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@company.com" required autocomplete="email">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="subject" placeholder="How can we help you?" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project and support needs..." required></textarea>
                         </div>
-                        <button type="submit" class="submit-button">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                            <span>Send Message</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                        <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
                     </form>
-                    <div id="formMessage" class="form-message"></div>
                 </div>
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="info-item">
-                        <h4>📧 Email</h4>
-                        <p>support@aisupporthub.com</p>
+                <div class="contact-info" role="complementary" aria-label="Contact details">
+                    <h3>Other ways to reach us</h3>
+                    <div class="info-item" id="infoEmail">
+                        <div class="info-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="info-body">
+                            <strong>Email</strong>
+                            <p>hello@nexusai.io</p>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h4>📞 Phone</h4>
-                        <p>+1 (555) 123-4567</p>
+                    <div class="info-item" id="infoPhone">
+                        <div class="info-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="info-body">
+                            <strong>Phone</strong>
+                            <p>+1 (800) NEXUS-AI</p>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h4>🏢 Address</h4>
-                        <p>123 Tech Street<br>San Francisco, CA 94105<br>United States</p>
+                    <div class="info-item" id="infoHours">
+                        <div class="info-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="info-body">
+                            <strong>Support Hours</strong>
+                            <p>Mon–Fri · 9 AM – 6 PM EST<br><em>AI Chat available 24/7</em></p>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h4>⏰ Business Hours</h4>
-                        <p>Monday - Friday: 9AM - 5PM EST<br>Saturday - Sunday: Closed<br>Chat available 24/7</p>
+                    <div class="info-item" id="infoLocation">
+                        <div class="info-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="info-body">
+                            <strong>Location</strong>
+                            <p>548 Market St, Suite 29<br>San Francisco, CA 94105</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- ===== Footer ===== -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <p>&copy; 2024 AI Support Hub. All rights reserved.</p>
-            <p>Built with Antigravity | Powered by AI | Deployed on Vercel</p>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="nav-logo" aria-label="NexusAI home">
+                        <span class="logo-icon" aria-hidden="true">⬡</span>
+                        <span class="logo-text">NexusAI</span>
+                    </a>
+                    <p>Intelligent customer support platform powered by advanced AI. Deployed on Vercel.</p>
+                </div>
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <div class="footer-col">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#services">Services</a>
+                        <a href="#about">About</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="#contact">Contact</a>
+                        <a href="#about">Mission</a>
+                        <a href="https://github.com/PJain7988/ChatBot" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> NexusAI. All rights reserved.</p>
+                <p>Built with ❤️ · Powered by AI · Deployed on Vercel</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/script.js"></script>
 </body>
 
